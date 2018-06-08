@@ -1,0 +1,9 @@
+{
+  "server": {
+    "host": "HOST",
+    "port": "PORT"
+  },
+  "auth": {
+    "expiresIn": "AUTH_EXPIRES_IN"
+  }
+}

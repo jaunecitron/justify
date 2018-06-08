@@ -1,0 +1,12 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 8080
+  },
+  "auth": {
+    "secret": "justify",
+    "expiresIn": "1h"
+  },
+  "limit": 80000,
+  "lineLength": 80
+}
