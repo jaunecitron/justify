@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node index.js & mocha test/index.js && exit 1"
+    "test": "node index.js & mocha test/index.js && kill -9 $!"
   },
   "keywords": [],
   "author": "marc.ren.tchang@gmail.com",

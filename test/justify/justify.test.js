@@ -17,6 +17,18 @@ Comme ça si un EOP passe, pas de soucis si la ligne fait moins de quatre-vingt 
 
   const mockTokenPayload = { email: 'email@gmail.com' }
 
+  it('should fail without authorization token', async () => {
+    const response = await request.post('/').send(mockText)
+    expect(response.status).to.be.equal(401)
+    expect(response.error.text).to.be.equal('Must be authenticated')
+  })
+
+  it('should fail with fake authorization token', async () => {
+    const response = await request.post('/').send(mockText).set('Authorization', 'Bearer some_bullshit')
+    expect(response.status).to.be.equal(401)
+    expect(response.error.text).to.be.equal('Must be authenticated')
+  })
+
   it('should succesfully respond a justified text', async () => {
     const token = (await tokenRequest.post('/').send(mockTokenPayload)).text
     const bearer = `Bearer ${token}`
@@ -26,7 +38,6 @@ Comme ça si un EOP passe, pas de soucis si la ligne fait moins de quatre-vingt 
         'Authorization': bearer,
         'Content-Type': 'text/plain'
       })
-    console.log(response.error)
     expect(response.status).to.be.equal(200)
     const text = response.text
     const lines = text.split('\n')
